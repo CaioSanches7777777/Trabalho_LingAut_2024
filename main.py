@@ -99,11 +99,11 @@ cont1 = 0
 for x in inp:  # para cada input em input.txt
     cont1 = cont1 + 1
     cont2 = 0
-    print("input: {}".format(varis[cont1-1]))
+    #print("input: {}".format(varis[cont1-1]))
     for y in ativos:  # para cada estado ativo atual
         cont2 = cont2 + 1
         cont3 = 0
-        print("ativos: {}".format(ativos[cont2-1]))
+        #print("ativos: {}".format(ativos[cont2-1]))
         for z in Atual:  # para cada transiC'C#o possivel
             cont3 = cont3 + 1
             if (y == z):  # se os ativos atuais forem iguais a algum dos atuais(possuirem alguma transiC'C#o)
@@ -113,7 +113,7 @@ for x in inp:  # para cada input em input.txt
             else:
                 continue
             
-    print("\nexclui")
-    print(ativos)
-    ativos.pop(0)
-    print("excluido\n")
+    #print("\nexclui")
+    #print(ativos)
+    #ativos.pop(0)
+    #print("excluido\n")
