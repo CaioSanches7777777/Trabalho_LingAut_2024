@@ -1,27 +1,17 @@
 # from Grav import Estado  #corrigir
 
 # organiza o arquivo de entrada em arquivos para estados, inicio, fins, e transiC'C5es
-with open(
-    "entrada.txt", "r"
-) as entrada:  # abre o arquivo de texto recebido pelo professor para leitura
-    with open(
-        "estados.txt", "w"
-    ) as estados:  # abre o arquivo predefinido para armazenar os estados (1B* linha)
+with open("entrada.txt", "r") as entrada:  # abre o arquivo de texto recebido pelo professor para leitura
+    with open("estados.txt", "w") as estados:  # abre o arquivo predefinido para armazenar os estados (1B* linha)
         line = entrada.readline()
         estados.writelines(line)
-    with open(
-        "estIni.txt", "w"
-    ) as ini:  # abre o arquivo predefinido para armazenar os estados iniciais (2B* linha)
+    with open("estIni.txt", "w") as ini:  # abre o arquivo predefinido para armazenar os estados iniciais (2B* linha)
         line = entrada.readline()
         ini.writelines(line)
-    with open(
-        "estFin.txt", "w"
-    ) as fim:  # abre o arquivo predefinido para armazenar os estados finais (3B* linha)
+    with open("estFin.txt", "w") as fim:  # abre o arquivo predefinido para armazenar os estados finais (3B* linha)
         line = entrada.readline()
         fim.writelines(line)
-    with open(
-        "transi.txt", "w"
-    ) as trans:  # abre o arquivo predefinido para armazenar as transiC'C5es (4B* linha em diante)
+    with open("transi.txt", "w") as trans:  # abre o arquivo predefinido para armazenar as transiC'C5es (4B* linha em diante)
         transicoes = entrada.readlines()
         trans.writelines(transicoes)
     # print("{}".format(Lines))
@@ -34,9 +24,7 @@ with open("estados.txt", "r") as estados:
     line = estados.readline()
     ests1 = line.split("\n")
     ests = ests1[0].split(" ")
-    limite = (
-        len(line) - 1
-    ) / 2  # NC#o sei pq, mas tem que subtrair 1 e dividir por dois (mesmo o tamanho sendo 4)
+    limite = (len(line) - 1) / 2  # NC#o sei pq, mas tem que subtrair 1 e dividir por dois (mesmo o tamanho sendo 4)
     while contador < limite:
         todosEsts.append(ests[contador])
         print("Estado {}".format(ests[contador]))
@@ -65,9 +53,7 @@ with open("transi.txt", "r") as trans:
         # contador = contador + 1    #desnecessC!rio
 
 ativos = []
-with open(
-    "estIni.txt", "r"
-) as inicio:  # Seleciona a C:nica variC!vel no arquivo q define o estado inicial
+with open("estIni.txt", "r") as inicio:  # Seleciona a C:nica variC!vel no arquivo q define o estado inicial
     inicio.seek(0)
     inicial = []
     estIni1 = inicio.readline()
@@ -79,17 +65,13 @@ with open(
     # Estado(estIni,True,False)  #Cria um estado chamado "1" que C) considerado como um atual, que nC#o consta como um estado final
 
 
-with open(
-    "estFin.txt", "r"
-) as final:  # Seleciona as variC!veis no arquivo q define os estados finais
+with open("estFin.txt", "r") as final:  # Seleciona as variC!veis no arquivo q define os estados finais
     contador = 0
     finais = []
     line = final.readline()
     estFin1 = line.split("\n")
     estFin = estFin1[0].split(" ")
-    limite = (
-        len(line) - 1
-    ) / 2  # NC#o sei pq, mas tem que subtrair 1 e dividir por dois (mesmo o tamanho sendo 4)
+    limite = (len(line) - 1) / 2  # NC#o sei pq, mas tem que subtrair 1 e dividir por dois (mesmo o tamanho sendo 4)
     while contador < limite:
         finais.append(estFin[contador])
         print("Final {}".format(estFin[contador]))
@@ -98,9 +80,7 @@ with open(
 
 
 cont1 = cont2 = cont3 = cont4 = 0
-with open(
-    "inputs.txt", "r"
-) as inputs:  # Armazena as variC!veis de transiC'C#o q sC#o inseridas pelo usuC!rio no arquivo "inputs.txt"
+with open("inputs.txt", "r") as inputs:  # Armazena as variC!veis de transiC'C#o q sC#o inseridas pelo usuC!rio no arquivo "inputs.txt"
     variaveis = []
     contador = 0
     inp = inputs.readline()
@@ -126,16 +106,13 @@ for x in inp:  # para cada input em input.txt
         print("ativos: {}".format(ativos[cont2-1]))
         for z in Atual:  # para cada transiC'C#o possivel
             cont3 = cont3 + 1
-            if (
-                y == z
-            ):  # se os ativos atuais forem iguais a algum dos atuais(possuirem alguma transiC'C#o)
-                if (
-                    x == Vari[cont3-1]
-                ):  # se o input atual for igual a variavel da transiC'C#o
+            if (y == z):  # se os ativos atuais forem iguais a algum dos atuais(possuirem alguma transiC'C#o)
+                if (x == Vari[cont3-1]):  # se o input atual for igual a variavel da transiC'C#o
                     print("{}: {}->{}".format(x, z, Goto[cont3 - 1]))
                     ativos.append(Goto[cont3 - 1])
             else:
                 continue
+            
     print("\nexclui")
     print(ativos)
     ativos.pop(0)
