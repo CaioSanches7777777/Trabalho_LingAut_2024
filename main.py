@@ -117,3 +117,22 @@ for x in inp:  # para cada input em input.txt
     #print(ativos)
     #ativos.pop(0)
     #print("excluido\n")
+#for x in Atual:                         #para cada estado inicial de cada transição possivel
+#    cont1 = 0
+#    cont2 = 0
+#    #print(Atual)
+#    for y in ativos:                    #para cada estado ativo
+#        cont1 = cont1+1
+#        if x == y:                      #se o estado ativo for o possuir uma transição
+#            #print(x)
+#            if Vari[cont1-1] == "h":    #se a transição for vazia
+#                print("{}:{}->{}".format(Vari[cont1-1],x,Goto[cont1-1]))
+#                ativos.append(Goto[cont1-1])
+#            else:
+#                if varis[0]==Vari[cont1-1]: #se não for vazia
+#                    print("{}:{}->{}".format(Vari[cont1-1],x,Goto[cont1-1]))
+#                    ativos.append(Goto[cont1-1])
+#                    continue
+#                continue
+#            #ativos.pop(0)
+#print(ativos)
