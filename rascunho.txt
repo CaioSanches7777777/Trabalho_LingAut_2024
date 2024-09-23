@@ -27,7 +27,7 @@ with open("estados.txt", "r") as estados:
     limite = (len(line) - 1) / 2  # NC#o sei pq, mas tem que subtrair 1 e dividir por dois (mesmo o tamanho sendo 4)
     while contador < limite:
         todosEsts.append(ests[contador])
-        #print("Estado {}".format(ests[contador]))
+        print("Estado {}".format(ests[contador]))
         # Estado(ests[contador],False,False)    #Cria um estado que nC#o C) considerado como um atual, que nC#o consta como um estado final
         contador = contador + 1
 
@@ -49,23 +49,8 @@ with open("transi.txt", "r") as trans:
         Atual.append(tra[num1])
         Vari.append(tra[num2])
         Goto.append(tra[num3])  # corrigir para prarar de guardar "\n" junto do numero
-        #print("{} {} {}".format(tra[num1], tra[num2], tra[num3]))
+        print("{} {} {}".format(tra[num1], tra[num2], tra[num3]))
         # contador = contador + 1    #desnecessC!rio
-
-with open("transi.txt","r") as NFA:
-    with open("transiDFA.txt", "w") as DFA:
-        contador = 0
-        num_linhas = sum(1 for _ in open('transi.txt'))
-        while contador < num_linhas:
-            if Vari[contador] == "h":
-                contador2 = 0
-                while contador2<num_linhas:
-                    if Atual[contador2] == Atual[contador]:
-                        print("{}{}{}".format(Atual[contador2],Vari[contador2],Goto[contador2]))
-                    contador2=contador2+1
-                print("\n")
-            contador = contador+1
-
 
 ativos = []
 with open("estIni.txt", "r") as inicio:  # Seleciona a C:nica variC!vel no arquivo q define o estado inicial
@@ -76,7 +61,7 @@ with open("estIni.txt", "r") as inicio:  # Seleciona a C:nica variC!vel no arqui
     estIni = estIni2[0]
     inicial.append(estIni)
     ativos.append(estIni)
-    #print("Inicio {}".format(estIni))
+    print("Inicio {}".format(estIni))
     # Estado(estIni,True,False)  #Cria um estado chamado "1" que C) considerado como um atual, que nC#o consta como um estado final
 
 
@@ -89,7 +74,7 @@ with open("estFin.txt", "r") as final:  # Seleciona as variC!veis no arquivo q d
     limite = (len(line) - 1) / 2  # NC#o sei pq, mas tem que subtrair 1 e dividir por dois (mesmo o tamanho sendo 4)
     while contador < limite:
         finais.append(estFin[contador])
-        #print("Final {}".format(estFin[contador]))
+        print("Final {}".format(estFin[contador]))
         # Estado(estFin[contador],False,True)    #Cria um estado que nC#o C) considerado como um atual, que consta como um estado final
         contador = contador + 1
 
@@ -104,36 +89,65 @@ with open("inputs.txt", "r") as inputs:  # Armazena as variC!veis de transiC'C#o
         len(inp) 
     ) / 2  # NC#o sei pq, mas tem que subtrair 1 e dividir por dois (mesmo o tamanho sendo 4)
     while contador < limite:
-        variaveis.append(varis[contador])
-        #print("variaveis {}".format(varis[contador]))
-        # Estado(ests[contador],False,False)    #Cria um estado que nC#o C) considerado como um atual, que nC#o consta como um estado final
-        contador = contador + 1
-        
+        try:
+            variaveis.append(varis[contador])
+            print("variaveis {}".format(varis[contador]))
+            # Estado(ests[contador],False,False)    #Cria um estado que nC#o C) considerado como um atual, que nC#o consta como um estado final
+            contador = contador + 1
+        except:
+            break
+
+
+with open("semVazio","w") as sv:
+    sv.writelines("")
+
 print("\n")
-cont1 = 0
-for x in inp:  # para cada input em input.txt
-    cont1 = cont1 + 1
-    cont2 = 0
-    #print("input: {}".format(varis[cont1-1]))
-    for y in ativos:  # para cada estado ativo atual
-        cont2 = cont2 + 1
-        cont3 = 0
-        #print("ativos: {}".format(ativos[cont2-1]))
-        for z in Atual:  # para cada transiC'C#o possivel
-            cont3 = cont3 + 1
-            if (y == z):  # se os ativos atuais forem iguais a algum dos atuais(possuirem alguma transiC'C#o)
-                if (x == Vari[cont3-1]):  # se o input atual for igual a variavel da transiC'C#o
-                    #print("{}: {}->{}".format(x, z, Goto[cont3 - 1]))
-                    ativos.append(Goto[cont3 - 1])
-            else:
-                continue
-            
-    #print("\nexclui")
-    #print(ativos)
-    #ativos.pop(0)
-    #print("excluido\n")
-    
-    
+
+#limite = sum(1 for _ in open('transi.txt')) 
+#contador = 0
+#while contador<limite:
+#    if Vari[contador] == "h":
+#        #print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+#        contador2=contador
+#        while contador2<limite:
+#            if Atual[contador]==Atual[contador2]:
+#                with open("semVazio","a") as sv:
+#                    sv.writelines("{} ".format(Goto[contador2]))
+#                    #print()
+#                print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+#            contador2=contador2+1
+#        #print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+#    contador=contador+1
+
+#limite = sum(1 for _ in open('transi.txt')) #Busca as transicoes vazias
+#contador = 0
+#while contador<limite:
+#    if Vari[contador] == "h":
+#        #print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+#        contador2=contador
+#        with open("semVazio","a") as sv:
+#            sv.writelines("{} ".format(Goto[contador2]))
+#            print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+#        contador2=contador2+1
+#        #print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+#    contador=contador+1
+
+limite = sum(1 for _ in open('transi.txt')) 
+contador = 0
+while contador<limite:
+    if Vari[contador] == "h":
+        #print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+        contador2=contador
+        while contador2<limite:
+            if Goto[contador]==Atual[contador2]:
+                with open("semVazio","a") as sv:
+                    sv.writelines("{} ".format(Goto[contador2]))
+                    #print()
+                print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+            contador2=contador2+1
+        #print("{} {} {}".format(Atual[contador],Vari[contador],Goto[contador]))
+    contador=contador+1
+   
 #for x in Atual:                         #para cada estado inicial de cada transição possivel
 #    cont1 = 0
 #    cont2 = 0
